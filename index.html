@@ -1,9 +1,136 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Home | paulbrowne.dev</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home &middot; paulbrowne.dev</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i" rel="stylesheet">
+    <script src="/js/zed.min.js"></script>
+    <script src="/js/typed.min.js"></script>
+    <style type="text/css">
+    body {
+        margin: 0;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 300;
+    }
+
+    main {
+        background-color: black;
+        background-image: radial-gradient(rgba(0, 150, 0, 0.35), black 120%);
+        background-image: linear-gradient(0, transparent, rgba(0,150,0,.25), transparent);
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        padding: 1rem;
+        color: white;
+        font-size: 17px;
+        text-shadow: 0 0 5px #C8C8C8;
+    }
+
+    main:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+        pointer-events: none;
+    }
+
+    ::selection {
+        background: #0080FF;
+        text-shadow: none;
+    }
+    pre{
+    	white-space: normal;
+    }
+    pre,
+    code {
+        margin: 0;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    code.time {
+        color: #aaa;
+    }
+
+    code.mark {
+        color: orange;
+    }
+    </style>
 </head>
+
 <body>
-	<p>Test hello world!</p>
+    <div id="typed-strings" style="display:none"></div>
+    <main>
+        <pre id="t1"></pre>
+        <pre id="t2"></pre>
+        <pre id="t3"></pre>
+    </main>
+    <script>
+    function theTime() {
+        var now = new Date();
+        //return ('0'+now.getHours()).slice(-2) + ":" + ('0'+now.getMinutes()).slice(-2) + ":" + ('0'+now.getSeconds()).slice(-2);
+        return ('0' + now.getHours()).slice(-2) + ":" + ('0' + now.getMinutes()).slice(-2);
+    }
+
+    ! function() {
+        new Typed('#t1', {
+            strings: ['<code class="time">' + theTime() + '</code><code class="mark"> ~ </code><code id="t1x"></code>'],
+            typeSpeed: 11,
+            startDelay: 1000,
+            cursorChar: '',
+            onStringTyped: function(pos, self) {
+                new Typed('#t1x', {
+                    strings: ['Hello'],
+                    typeSpeed: 80,
+                    startDelay: 1000,
+                    cursorChar: '',
+                    onStringTyped: function(pos, self) {
+                        new Typed('#t2', {
+                            strings: ['<code class="time">' + theTime() + '</code><code class="mark"> ~ </code><code id="t2x"></code>'],
+                            typeSpeed: 11,
+                            startDelay: 1000,
+                            cursorChar: '',
+                            onStringTyped: function(pos, self) {
+                                new Typed('#t2x', {
+                                    strings: ['My name is Paul Browne'],
+                                    typeSpeed: 80,
+                                    startDelay: 1000,
+                                    cursorChar: '',
+                                    onStringTyped: function(pos, self) {
+                                        new Typed('#t3', {
+                                            strings: ['<code class="time">' + theTime() + '</code><code class="mark"> ~ </code><code id="t3x"></code>'],
+                                            typeSpeed: 11,
+                                            startDelay: 1000,
+                                            cursorChar: '',
+                                            onStringTyped: function(pos, self) {
+                                                new Typed('#t3x', {
+                                                    strings: ["I'm a Web developer from Helsinki</code>"],
+                                                    typeSpeed: 80,
+                                                    startDelay: 1000,
+                                                    cursorChar: '',
+                                                    onStringTyped: function(pos, self) {
+                                                        console.log(theTime());
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }();
+    </script>
 </body>
+
 </html>
