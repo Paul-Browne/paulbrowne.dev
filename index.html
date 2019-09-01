@@ -9,6 +9,11 @@
     <script src="/js/zed.min.js"></script>
     <script src="/js/typed.min.js"></script>
     <style type="text/css">
+    *,
+    *:before,
+    *:after{
+    	box-sizing: border-box;
+    }
     body {
         margin: 0;
         font-family: 'IBM Plex Mono', monospace;
@@ -17,8 +22,8 @@
 
     main {
         background-color: black;
-        background-image: radial-gradient(rgba(0, 150, 0, 0.35), black 120%);
-        background-image: linear-gradient(0, transparent, rgba(0,150,0,.25), transparent);
+        /*background-image: linear-gradient(0, transparent, rgba(0,150,0,.25), transparent);*/
+        /*background-image: radial-gradient(rgba(0, 150, 0, 0.35), black 100%);*/
         min-height: 100vh;
         margin: 0;
         overflow: hidden;
@@ -26,6 +31,20 @@
         color: white;
         font-size: 17px;
         text-shadow: 0 0 5px #C8C8C8;
+    }
+
+    main:before{
+    	content: "";
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100vw;
+    	height: 100vh;
+    	background-image: url(/images/android-chrome-512x512-green.png);
+    	background-size: 50vmin;
+    	background-repeat: no-repeat;
+    	background-position: center;
+    	opacity: 0.14;
     }
 
     main:after {
