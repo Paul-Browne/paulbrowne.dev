@@ -27,6 +27,8 @@
     "dotenv": "^8.1.0",
     "fs-extra": "^8.1.0",
     "html-minifier": "^4.0.0",
+    "image-size": "^0.7.4",
+    "jimp": "^0.6.8",
     "less": "^3.10.3",
     "mime-types": "^2.1.24",
     "mkdirp": "^0.5.1",

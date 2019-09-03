@@ -8,6 +8,8 @@ const jsFunc = require('./javascript.js');
 const htmlFunc = require('./html.js');
 const cssFunc = require('./css.js');
 const sassFunc = require('./sass.js');
+const lessFunc = require('./less.js');
+const imgFunc = require('./images.js');
 
 function fileHasBeenChangedSinceLastBuild(path, buildStamp){
     var check = fs.statSync(path);
@@ -30,7 +32,11 @@ function walkSync(inDirectory, outDirectory) {
             cssFunc(fs.readFileSync(inDirectory, 'utf8'), inDirectory, outDirectory);
         }else if (mime.lookup(inDirectory) === 'text/x-scss' || mime.lookup(inDirectory) === 'text/x-sass') {
             sassFunc(inDirectory, outDirectory);
-        } 
+        }else if (mime.lookup(inDirectory) === 'text/less' ) {
+            lessFunc(fs.readFileSync(inDirectory, 'utf8'), inDirectory, outDirectory);
+        }else if (mime.lookup(inDirectory) === 'image/jpeg' || mime.lookup(inDirectory) === 'image/png' || mime.lookup(inDirectory) === 'image/gif') { // todo check gif
+            imgFunc(inDirectory, outDirectory);
+        }
     }
 }
 
