@@ -2,7 +2,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const mime = require('mime-types');
-
 const utility = require('./utility.js');
 const jsFunc = require('./javascript.js');
 const htmlFunc = require('./html.js');
