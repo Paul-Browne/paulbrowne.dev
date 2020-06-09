@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/web-build-process/scripts/run.js",
+    "like": "node like.js"
   },
   "repository": {
     "type": "git",
@@ -17,25 +18,10 @@
   },
   "homepage": "https://github.com/Paul-Browne/paulbrowne.dev#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "puppeteer": "^3.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "autoprefixer": "^9.6.1",
-    "chalk": "^2.4.2",
-    "dotenv": "^8.1.0",
-    "fs-extra": "^8.1.0",
-    "html-minifier": "^4.0.0",
-    "image-size": "^0.7.4",
-    "jimp": "^0.6.8",
-    "less": "^3.10.3",
-    "mime-types": "^2.1.24",
-    "mkdirp": "^0.5.1",
-    "node-sass": "^4.12.0",
-    "postcss": "^7.0.17",
-    "postcss-clean": "^1.1.0",
-    "svgo": "^1.3.0",
-    "uglify-js": "^3.6.0"
+    "web-build-process": "^1.3.4"
   }
 }

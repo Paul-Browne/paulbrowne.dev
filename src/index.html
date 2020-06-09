@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home &middot; paulbrowne.dev</title>
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
     <script src="/js/zed.min.js"></script>
     <script src="/js/typed.min.js"></script>
     <style>
-    *,
-    *:before,
-    *:after{
-    	box-sizing: border-box;
-    }
-    body {
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      body {
         margin: 0;
-        font-family: 'IBM Plex Mono', monospace;
+        font-family: "IBM Plex Mono", monospace;
         font-weight: 300;
-    }
+      }
 
-    main {
+      main {
         background-color: black;
         /*background-image: linear-gradient(0, transparent, rgba(0,150,0,.25), transparent);*/
         /*background-image: radial-gradient(rgba(0, 150, 0, 0.35), black 100%);*/
@@ -29,166 +31,213 @@
         overflow: hidden;
         padding: 1rem;
         color: #3e1;
-        font-size: 17px;
-        text-shadow: 0 0 5px #C8C8C8;
-    }
+        text-shadow: 0 0 5px #c8c8c8;
+      }
 
-    main:before{
-    	content: "";
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	width: 100vw;
-    	height: 100vh;
-    	background-image: url(/images/android-chrome-512x512-green.png);
-    	background-size: 50vmin;
-    	background-repeat: no-repeat;
-    	background-position: center;
-    	opacity: 0.14;
-    }
-
-    main:after {
+      main:before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+        background-image: url(/images/android-chrome-512x512-green.png);
+        background-size: 50vmin;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.14;
         pointer-events: none;
-    }
+      }
 
-    ::selection {
-        background: #0080FF;
+      main:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+      }
+
+      ::selection {
+        background: #0080ff;
         text-shadow: none;
-    }
-    pre{
-    	white-space: normal;
-    }
-    pre,
-    code {
+      }
+      pre {
+        white-space: normal;
+      }
+      pre,
+      code {
         margin: 0;
-        font-family: 'IBM Plex Mono', monospace;
+        font-family: "IBM Plex Mono", monospace;
         font-weight: 300;
         font-size: 18px;
         line-height: 1.6;
-    }
+      }
 
-    code.time {
+      code.time {
         color: #aaa;
-    }
+      }
 
-    code.mark {
+      code.mark {
         color: orange;
-    }
-    .typed-cursor{
-      opacity: 1;
-      font-size: 22px;
-      line-height: 24px;
-    }
-    .typed-cursor{
-      -webkit-animation: typedjsBlink 1.1s infinite;
-              animation: typedjsBlink 1.1s infinite;
-    }
-    @keyframes typedjsBlink{
-      50% { opacity: 0.0; }
-    }
-    @-webkit-keyframes typedjsBlink{
-      0% { opacity: 1; }
-      50% { opacity: 0.0; }
-      100% { opacity: 1; }
-    }
-    
-    .typed-cursor--blink{
-        display: none;
-    }
-    </style>
-</head>
+      }
+      #index-1,
+      #index-1 + span {
+        color: #c10000;
+        text-shadow: 0 0 5px #c10000;
+        font-weight: 400;
+      }
+      .typed-cursor {
+        opacity: 1;
+        font-size: 22px;
+        line-height: 24px;
+      }
+      .typed-cursor {
+        -webkit-animation: typedjsBlink 1.1s infinite;
+        animation: typedjsBlink 1.1s infinite;
+      }
+      @keyframes typedjsBlink {
+        50% {
+          opacity: 0;
+        }
+      }
+      @-webkit-keyframes typedjsBlink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
 
-<body>
+      .typed-cursor--blink {
+        display: none;
+      }
+
+      code input {
+        background: transparent;
+        padding: 0;
+        font-family: "IBM Plex Mono", monospace;
+        color: #3e1;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.6;
+        border: 0;
+        text-shadow: 0 0 5px #c8c8c8;
+      }
+    </style>
+  </head>
+
+  <body>
     <div id="typed-strings" style="display:none"></div>
     <main id="typer"></main>
     <script>
-    ! function() {        
+      !(function() {
         function getOS() {
           var userAgent = window.navigator.userAgent,
-              platform = window.navigator.platform,
-              macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-              windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-              iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-              os = null;
+            platform = window.navigator.platform,
+            macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
+            windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
+            iosPlatforms = ["iPhone", "iPad", "iPod"],
+            os = null;
           if (macosPlatforms.indexOf(platform) !== -1) {
-            os = 'Mac OS';
+            os = "Mac OS";
           } else if (iosPlatforms.indexOf(platform) !== -1) {
-            os = 'iOS';
+            os = "iOS";
           } else if (windowsPlatforms.indexOf(platform) !== -1) {
-            os = 'Windows';
+            os = "Windows";
           } else if (/Android/.test(userAgent)) {
-            os = 'Android';
+            os = "Android";
           } else if (!os && /Linux/.test(platform)) {
-            os = 'Linux';
+            os = "Linux";
           }
           return os;
         }
 
         function theTime() {
-            var now = new Date();
-            //return ('0'+now.getHours()).slice(-2) + ":" + ('0'+now.getMinutes()).slice(-2) + ":" + ('0'+now.getSeconds()).slice(-2);
-            return ('0' + now.getHours()).slice(-2) + ":" + ('0' + now.getMinutes()).slice(-2);
+          var now = new Date();
+          //return ('0'+now.getHours()).slice(-2) + ":" + ('0'+now.getMinutes()).slice(-2) + ":" + ('0'+now.getSeconds()).slice(-2);
+          return (
+            ("0" + now.getHours()).slice(-2) +
+            ":" +
+            ("0" + now.getMinutes()).slice(-2)
+          );
         }
 
-        function sentence(idx, text, delay){
-            var newPre = document.createElement("PRE");
-            document.getElementById("typer").appendChild(newPre);
-            new Typed('main pre:last-child', {
-                strings: ['<code class="time">' + theTime() + '</code><code class="mark"> ~ </code><code id="index-' + idx + '"></code>'],
-                typeSpeed: 11,
-                startDelay: delay,
-                showCursor: false,
-                onStringTyped: function(pos, self) {
-                    new Typed('#index-' + idx, {
-                        strings: [text],
-                        typeSpeed: 40,
-                        startDelay: 500,
-                        cursorChar: '|',
-                        autoInsertCss: false
-                    });
-                }
-            });
-        }
-        function start(response){
-            sentence(1, 'Diagnostics started', 0);
-            sentence(2, 'Continent: ' + response.continent_name, 1000);
-            sentence(3, 'Country: ' + response.country_name, 2000);
-            sentence(4, 'City: ' + response.city, 3000);
-            sentence(5, 'IP: ' + response.ip, 4000); 
-            if(window.WURFL.is_mobile){
-                sentence(6, 'Device: ' + window.WURFL.complete_device_name, 5000);
-            }else{
-                sentence(6, 'System: ' + getOS(), 5000);
+        function sentence(idx, text, delay) {
+          var newPre = document.createElement("PRE");
+          document.getElementById("typer").appendChild(newPre);
+          new Typed("main pre:last-child", {
+            strings: [
+              '<code class="time">' +
+                theTime() +
+                '</code><code class="mark"> ~ </code><code id="index-' +
+                idx +
+                '"></code>'
+            ],
+            typeSpeed: 11,
+            startDelay: delay,
+            showCursor: false,
+            onStringTyped: function(pos, self) {
+              new Typed("#index-" + idx, {
+                strings: [text],
+                typeSpeed: 40,
+                startDelay: 500,
+                cursorChar: "|",
+                autoInsertCss: false
+              });
             }
+          });
+        }
+        function start(response) {
+          sentence(1, "Connection detected", 0);
+          sentence(
+            2,
+            "City: " + response.city + " (" + response.country_name + ")",
+            800
+          );
+          sentence(3, "IP: " + response.ip, 1600);
+          sentence(4, "Operator: " + response.isp, 2400);
+          if (window.WURFL.is_mobile) {
+            sentence(5, "Device: " + window.WURFL.complete_device_name, 3200);
+          } else {
+            sentence(5, "System: " + getOS(), 3200);
+          }
         }
 
-        function runAjax(){
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = xhr.responseText;
-                    localStorage.setItem("ipinfo", response);
-                    start(JSON.parse(response));
-                }
-            };
-            xhr.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=a47edaeb8d87430890fe4865791e2cae", true);
-            xhr.send();
+        function runAjax() {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              var response = xhr.responseText;
+              localStorage.setItem("ipinfo", response);
+              start(JSON.parse(response));
+            }
+          };
+          xhr.open(
+            "GET",
+            "https://api.ipgeolocation.io/ipgeo?apiKey=a47edaeb8d87430890fe4865791e2cae",
+            true
+          );
+          xhr.send();
         }
 
         var newScript = document.createElement("SCRIPT");
         newScript.src = "https://wurfl.io/wurfl.js";
         newScript.addEventListener("load", runAjax);
         document.head.appendChild(newScript);
-
-    }();
+      })();
     </script>
-</body>
-
+  </body>
 </html>
