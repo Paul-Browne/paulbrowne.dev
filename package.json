@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node node_modules/web-build-process/scripts/run.js",
+    "start": "node tester.js",
+    "old": "node node_modules/web-build-process/scripts/run.js",
     "like": "node like.js"
   },
   "repository": {
