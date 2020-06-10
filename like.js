@@ -1,4 +1,3 @@
-#!/usr/bin/env nodejs
 var credentials = [
 	{
 		username: "paulmatthewbrowne@gmail.com",
@@ -13,7 +12,10 @@ const app = express();
 const port = 8888;
 
 async function puppet(user, url, res){
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox']
+  })
   const page = await browser.newPage();
   await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${url}`);
   await page.waitFor(3534);
