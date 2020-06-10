@@ -1,3 +1,4 @@
+#!/usr/bin/env nodejs
 var credentials = [
 	{
 		username: "paulmatthewbrowne@gmail.com",
