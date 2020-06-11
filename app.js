@@ -15,7 +15,7 @@ const credentials = [
 
 async function puppet(user, url, res){
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: ['--no-sandbox']
   })
   const page = await browser.newPage();
@@ -29,6 +29,8 @@ async function puppet(user, url, res){
   await page.waitFor(513);
   await page.click('button[type="submit"]');
   await page.waitForNavigation();
+  const loc2 = await page.evaluate(() => {return location.href });
+  res.write(`<p>${loc2}</p>`);
   if (await page.$('button[aria-pressed="false"][aria-label^="Like"][aria-label$="post"]') !== null){
     await page.click('button[aria-pressed="false"][aria-label^="Like"][aria-label$="post"]');
     await page.waitFor(1033);
