@@ -22,6 +22,7 @@ app.use('/like-my-post', function(req, res){
         const browser = await puppeteer.launch({
           args: ['--no-sandbox']
         });
+        await page.waitFor(2312);
         await res.write("<p>1</p>");
         const url = "https://www.linkedin.com/posts/eeromartela_digimyynti-digitalsales-digimarkkinointi-activity-6675997627793985537-YlDI/";
         const page = await browser.newPage();
