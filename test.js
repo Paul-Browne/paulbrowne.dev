@@ -12,8 +12,9 @@ credentials.forEach( function(user, index) {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox']
     });
+    const url = "https://www.linkedin.com/posts/eeromartela_digimyynti-digitalsales-digimarkkinointi-activity-6675997627793985537-YlDI/";
     const page = await browser.newPage();
-    await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${req.query.url}`);
+    await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${url}`);
     await page.waitFor(3534);
     await page.focus('#username');
     await page.keyboard.type(user.username);
