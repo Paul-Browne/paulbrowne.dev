@@ -17,20 +17,23 @@ app.use('/like-my-post', function(req, res){
   if(req.query.url){
     res.write(`<a target="_blank" href="${req.query.url}">liking this post...<a><br><span>wait a minute</span>`);
     credentials.forEach( function(user, index) {
-      res.write(`<p>${user.username}</p>`);
       (async () => {
-        res.write(`<p>${user.username}</p>`);
+        await res.write(`<p>1</p>`);
         const browser = await puppeteer.launch({
           args: ['--no-sandbox']
         });
+        await res.write(`<p>2</p>`);
         const page = await browser.newPage();
+        await res.write(`<p>3</p>`);
         await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${req.query.url}`);
+        await res.write(`<p>4</p>`);
         await page.waitFor(3534);
-        res.write(`<p>typing username</p>`);
+        await res.write(`<p>5</p>`);
+        await res.write(`<p>typing username</p>`);
         await page.focus('#username');
         await page.keyboard.type(user.username);
         await page.waitFor(394);
-        res.write(`<p>typing password</p>`);
+        await res.write(`<p>typing password</p>`);
         await page.focus('#password')
         await page.keyboard.type(user.password);
         await page.waitFor(513);
