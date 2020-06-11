@@ -15,6 +15,7 @@ credentials.forEach( function(user, index) {
     await console.log(1);
     const url = "https://www.linkedin.com/posts/eeromartela_digimyynti-digitalsales-digimarkkinointi-activity-6675997627793985537-YlDI/";
     const page = await browser.newPage();
+    await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
     await console.log(2);
     await page.waitFor(3534);
     await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${url}`);
