@@ -14,10 +14,7 @@ const credentials = [
 ];
 
 async function puppet(user, url, res){
-  const browser = await puppeteer.launch({
-    headless: false,
-    args: ['--no-sandbox']
-  })
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${url}`);
   await page.waitFor(3534);
