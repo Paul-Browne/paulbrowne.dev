@@ -10,7 +10,6 @@ const credentials = [
 credentials.forEach( function(user, index) {
   (async () => {
     const browser = await puppeteer.launch({
-      headless: false,
       args: ['--no-sandbox']
     });
     await console.log(1);
