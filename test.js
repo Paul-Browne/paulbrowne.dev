@@ -45,5 +45,9 @@ credentials.forEach( function(user, index) {
       await console.log("already liked");
       await browser.close();
     }
+    //await page.click('.share-reshare-button button');
+    //await page.waitFor(853);
+    //await page.click('button[data-control-name="share.post"]');
+    //await page.waitFor(250000);
   })();
 });
