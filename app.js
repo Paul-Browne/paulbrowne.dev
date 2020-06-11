@@ -1,3 +1,5 @@
+const childProcess = require('child_process');
+
 const puppeteer = require("puppeteer");
 const express = require('express');
 const app = express();
@@ -13,7 +15,38 @@ const credentials = [
   }
 ];
 
+
+function runScript(scriptPath, callback) {
+
+    // keep track of whether callback has been invoked to prevent multiple invocations
+    var invoked = false;
+
+    var process = childProcess.fork(scriptPath);
+
+    // listen for errors as they may prevent the exit event from firing
+    process.on('error', function (err) {
+        if (invoked) return;
+        invoked = true;
+        callback(err);
+    });
+
+    // execute the callback once the process has finished running
+    process.on('exit', function (code) {
+        if (invoked) return;
+        invoked = true;
+        var err = code === 0 ? null : new Error('exit code ' + code);
+        callback(err);
+    });
+
+}
+
 app.use('/like-my-post', function(req, res){
+  runScript('./test.js', function (err) {
+      if (err) throw err;
+      console.log('finished running some-script.js');
+  });
+
+  /*
   if(req.query.url){
     res.write(`<a target="_blank" href="${req.query.url}">liking this post...<a><br><span>wait a minute</span>`);
 
@@ -22,7 +55,6 @@ app.use('/like-my-post', function(req, res){
         const browser = await puppeteer.launch({
           args: ['--no-sandbox']
         });
-        await page.waitFor(2312);
         await res.write("<p>1</p>");
         const url = "https://www.linkedin.com/posts/eeromartela_digimyynti-digitalsales-digimarkkinointi-activity-6675997627793985537-YlDI/";
         const page = await browser.newPage();
@@ -111,6 +143,9 @@ app.use('/like-my-post', function(req, res){
   }else{
     res.send('no url');
   }
+
+  */
+
 });
 
 
