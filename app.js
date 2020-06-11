@@ -52,7 +52,7 @@ async function puppet(user, url, res){
 
 app.use('/like-my-post', function(req, res){
   if(req.query.url){
-    res.write(`<a target="_blank" href="${req.query.url}">liking this post... wait a minute<a>`);
+    res.write(`<a target="_blank" href="${req.query.url}">liking this post...<a><br><span>wait a minute</span>`);
     credentials.forEach( function(user, index) {
       puppet(user, req.query.url, res);
     });   
