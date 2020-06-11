@@ -18,9 +18,11 @@ async function puppet(user, url, res){
   const page = await browser.newPage();
   await page.goto(`https://www.linkedin.com/uas/login?session_redirect=${url}`);
   await page.waitFor(3534);
+  res.write(`<p>typing username</p>`);
   await page.focus('#username')
   await page.keyboard.type(user.username);
   await page.waitFor(394);
+  res.write(`<p>typing password</p>`);
   await page.focus('#password')
   await page.keyboard.type(user.password);
   await page.waitFor(513);
