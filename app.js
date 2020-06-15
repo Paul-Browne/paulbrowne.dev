@@ -1,10 +1,22 @@
+var ip = require('ip');
 const puppeteer = require("puppeteer");
 const express = require('express');
 const app = express();
 const port = 3000;
 
+const publicIp = require('public-ip');
+
 // serve public from root
 app.use('/', express.static('public'));
+
+
+app.use('/tester', function(req, res){
+  (async () => {
+    var one = await publicIp.v4();
+    var two = await ip.address();
+    await res.send(`<pre>${one}</pre><pre>${two}</pre>`);
+})();
+})
 
 const credentials = [
   {
@@ -15,7 +27,7 @@ const credentials = [
 
 app.use('/like-my-post', function(req, res){
   if(req.query.url){
-    res.write(`<a target="_blank" href="${req.query.url}">liking this post...<a><br><span>wait a minute</span>`);
+    res.send(`<a target="_blank" href="${req.query.url}">liking this post...<a><br><span>wait a minute</span>`);
     credentials.forEach( function(user, index) {
       (async () => {
         const browser = await puppeteer.launch({
