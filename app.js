@@ -1,3 +1,11 @@
+/* 
+  ssh root@134.209.186.124
+  cd /var/www/paulbrowne.dev
+  git pull
+  npm i
+  pm2 restart all
+*/
+
 var ip = require('ip');
 const puppeteer = require("puppeteer");
 const express = require('express');
@@ -12,9 +20,10 @@ app.use('/', express.static('public'));
 
 app.use('/tester', function(req, res){
   (async () => {
+    var url = await req.query.user;
     var one = await publicIp.v4();
     var two = await ip.address();
-    await res.send(`<pre>${one}</pre><pre>${two}</pre>`);
+    await res.send(`<pre>${one}</pre><pre>${two}</pre><pre>${url}</pre><script>console.log(${JSON.stringify(req.headers)})</script>`);
 })();
 })
 
