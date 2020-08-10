@@ -37,7 +37,7 @@ async function asyncForEach(array, callback) {
 app.use('/like-my-post', function(req, res){
   if(req.query.url){
     (async () => {
-      var response = `<h2><a href="req.query.url">This post</a></h2>
+      var response = `<h2><a href="${req.query.url}">This post</a></h2>
                       <pre>`;
       await asyncForEach(credentials, async (user, i) => {
         const browser = await puppeteer.launch({
