@@ -59,7 +59,7 @@ app.use('/like-my-post', function(req, res){
                         <pre>`;
         await asyncForEach(credentials, async (user, i) => {
           const browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             args: ['--no-sandbox']
           });
           //const url = "https://www.linkedin.com/posts/eeromartela_digimyynti-digitalsales-digimarkkinointi-activity-6675997627793985537-YlDI/";
