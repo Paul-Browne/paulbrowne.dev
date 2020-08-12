@@ -57,6 +57,10 @@ async function asyncForEach(array, callback) {
 var running = false;
 
 app.use('/like-my-post', function(req, res){
+  // incase of errors...
+  setTimeout(function(){
+    running = false;
+  }, 1000 * 120);
   if(!running){
     running = true;
     if(req.query.url){
